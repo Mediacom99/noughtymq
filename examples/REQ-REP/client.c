@@ -14,7 +14,7 @@ int main (void)
 	printf("Connecting to hello world server...\n");
 	void* context = zmq_ctx_new(); //creating new zmq context
 	void* requester = zmq_socket(context, ZMQ_REQ); //create a socket for a request to a req-rep server
-	zmq_connect(requester, "tcp://192.168.1.42:5555"); //connect to the server using the socket
+	zmq_connect(requester, "tcp://localhost:5555"); //connect to the server using the socket
 
 	char buff[20];
 	zmq_send(requester, "H4ck3d!", 7, 0); //send something to the server (request something)
