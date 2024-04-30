@@ -24,7 +24,7 @@ int main (void) {
 		zmq_recv(responder, buffer, 10, 0); //receive request from client
 		printf("%s\n", buffer);
 		sleep(1);
-		zmq_send(responder, "Message Received\n",17,0); //send response based on the client request
+		zmq_send(responder, "Message Received Boy 6969696969696969\n",38,0); //send response based on the client request
 	}
 	return 0;
 }
