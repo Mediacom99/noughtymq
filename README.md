@@ -11,9 +11,14 @@ Dependencies:
     1. libzmq3-dev (on debian)
     2. raylib (?)
 
-## Static linking
+## Linking
 
-Need to download openGL archives. Check verbosity of ld error by passing the -V flag to ld.
+Static: Need to download openGL archives. Check verbosity of ld error by passing the -V flag to ld.
+
+Anyway, REMEMBER to run this before anything:
+```
+export LD_LIBRARY_PATH = ./lib
+```
 
 ## TODO
 
