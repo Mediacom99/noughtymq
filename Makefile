@@ -4,18 +4,22 @@ LIB_PATH = ./lib
 INC_PATH = ./include
 
 noughtymq : ${SRC}
-	clang -v -I${INC_PATH} -Wl,-V,-L=${LIB_PATH} -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 ${SRC} -o ${BIN}
+	clang -v -I${INC_PATH} -Wl,,-L=${LIB_PATH} -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 ${SRC} -o ${BIN}
+
+verbose: ${SRC}
+	clang -v -I${INC_PATH} -Wl,--verbose,-L=${LIB_PATH} -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 ${SRC} -o ${BIN}
 
 # Compile statically
 static : ${SRC}
 	clang -v -I${INC_PATH} -Wl,-V,-L=${LIB_PATH} -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -static ${SRC} -o ${BIN}
 
 clean : 
-	rm -i ${BIN}
+	rm ${BIN}
 
 clean-all:
 	rm -i ./bin/*
 
-run :
+run : ${SRC}
+	clang -v -I${INC_PATH} -Wl,,-L=${LIB_PATH} -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 ${SRC} -o ${BIN}
 	${BIN}
 	
