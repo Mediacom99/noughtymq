@@ -7,5 +7,16 @@ Anyone that should have access now can securely communicate without having to re
 
 ## Utilities
 
-Dependencies: libzmq3-dev (on debian)
+Dependencies: 
+    1. libzmq3-dev (on debian)
+    2. raylib (?)
 
+## Static linking
+
+Need to download openGL archives. Check verbosity of ld error by passing the -V flag to ld.
+
+## TODO
+
+[x] -- example with raylib
+[ ] -- try getting output dynamically onto window (from printf for example)
+[ ] -- understand all the other patterns in zeroMQ
