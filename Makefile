@@ -1,20 +1,22 @@
-SRC = ./examples/raylib/rayguiTry.c
-BIN = ./bin/noughtymq
-LIB_PATH = ./lib
-INC_PATH = ./include
-LIB_FLAG = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+SERVER = ./src/server.c
+CLIENT = ./src/client.c
+BINclient = ./bin/client
+BINserver = ./bin/server
+INC = ./include
 
-.EXPORT_ALL_VARIABLES:
-	LD_LIBRARY_PATH=${LIB_PATH}
+targets : client server
+	@echo "[INFO] Built both client and server binaries."
 
-noughtymq : ${SRC}
-	clang -v -I${INC_PATH} -Wl,--verbose,-L${LIB_PATH} ${LIB_FLAG} ${SRC} -o ${BIN}
+client : ${CLIENT}
+	@echo "[INFO] Building client binary ..."
+	gcc -std=c99 -Wall --pedantic-errors -I${INC} -lzmq ${CLIENT} -o ${BINclient}
 
+server : ${SERVER}
+	@echo "[INFO] Building server binary ..."
+	gcc -std=c99  -Wall --pedantic-errors -I${INC} -lzmq ${SERVER} -o ${BINserver}
 
-run : noughtymq
-	${BIN}
-
-	
-clean : 
-	rm ${BIN}
+clean :
+	@echo "[INFO] Removing client and server executables."
+	rm ${BINclient}
+	rm ${BINserver}
 
