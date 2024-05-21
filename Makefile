@@ -9,11 +9,11 @@ targets : client server
 
 client : ${CLIENT}
 	@echo "[INFO] Building client binary ..."
-	gcc -std=c99 -Wall --pedantic-errors -I${INC} -lzmq ${CLIENT} -o ${BINclient}
+	gcc -std=gnu11 -Wall --pedantic-errors -I${INC} -lzmq ${CLIENT} -o ${BINclient}
 
 server : ${SERVER}
 	@echo "[INFO] Building server binary ..."
-	gcc -std=c99  -Wall --pedantic-errors -I${INC} -lzmq ${SERVER} -o ${BINserver}
+	gcc -std=gnu11  -Wall --pedantic-errors -I${INC} -lzmq ${SERVER} -o ${BINserver}
 
 clean :
 	@echo "[INFO] Removing client and server executables."

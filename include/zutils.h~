@@ -1,0 +1,33 @@
+#ifndef ZUTILS_H
+#define ZUTILS_H
+
+#include <stdlib.h>
+
+#define BUFSIZE 256
+
+
+// DECLARATION
+
+static char *s_recv(void *socket);
+
+
+// IMPLEMENTATION
+
+// Receive zeroMQ string from socket and convert it into C string
+// Chops string at BUFSIZE chars with a null char.
+static char* s_recv(void* socket, int flags)
+{
+    char buffer[BUFSIZE];
+    int size = zmq_recv(socket, buffer, BUFSIZE, flags);
+    if(size < 0)
+    {
+	return NULL;
+    } else if(size < BUFSIZE) {
+	buffer[size] = '\0';
+	return strdup();
+    } else {
+	buffer[BUFSIZE - 1] = '\0';
+    }
+}
+
+#endif ZUTILS_H

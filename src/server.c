@@ -1,38 +1,35 @@
 /*
- *
- *  Request-Response pattern example
- */
 
+  Publisher-Subscribe server model example with zeroMQ library.
 
+*/
+
+#include "zutils.h"
 #include <zmq.h>
-#include <stdio.h>
-#include <unistd.h>
 #include <assert.h>
+#include <stdio.h>
 #include <string.h>
 
-#define MAXBUF 256
+#define BUFSIZE 256
 
-int main (void) {
+int main(void)
+{
+    //Start context and publisher socket
+    void *ctx = zmq_ctx_new();
+    void *publisher = zmq_socket(ctx, ZMQ_PUB);
+    int rc = zmq_bind(publisher, "tcp://*:6969");
+    assert(rc == 0);
+    char usrline[BUFSIZE];
+    
+    while(1) {
+	printf("Write what you want to publish:\n");
+	fgets(usrline,BUFSIZE,stdin);
+	int res = s_send(publisher, usrline, 0);
+	fprintf(stderr, "[LOG] chars sent: %d\n", res);
+    }
 
-	//Bind this application to a socket to talk to clients
-	void *context = zmq_ctx_new(); //Initialize zmq context
-	void *responder = zmq_socket(context, ZMQ_REP); //get a socket as a responder of the clients' requests
-	int rc = zmq_bind(responder, "tcp://*:5555"); //bind the socket to the 5555 port using tcp for incoming messages from clients
-	assert(rc == 0);
+    zmq_close(publisher);
+    zmq_ctx_destroy(ctx);
 
-	//Main loop
-
-	while(1)
-	{
-		char buffer[MAXBUF]; //buffer to hold client request (not a C string by default!!!)
-		for(int i = 0; i < MAXBUF; i++) {
-		  buffer[i] = 0;
-		}
-		zmq_recv(responder, buffer, MAXBUF, 0); //receive request from client
-		printf("%s\n", buffer);
-		sleep(1);
-		zmq_send(responder, "Here is the response to your request!",MAXBUF,0); //send response answering to the request
-	}
-	return 0;
+    return 0;
 }
-
