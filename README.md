@@ -8,14 +8,15 @@ Anyone that should have access now can securely communicate without having to re
 ## Utilities
 
 Dependencies: 
-    1. libzmq3-dev (on debian)
-    2. raylib (?)
+1. libzmq3-dev (on debian)
+2. raylib (?)
 
 ## Linking
 
-Static: Need to download openGL archives. Check verbosity of ld error by passing the -V flag to ld.
+Static: zeroMQ and ncurses both provide archive files.
 
-Anyway, REMEMBER to run this before anything:
+Anyway, REMEMBER to run this before anything if you are linking dynamically
+against a library not in a default system folder:
 ```
 export LD_LIBRARY_PATH = ./lib
 ```
@@ -23,5 +24,11 @@ export LD_LIBRARY_PATH = ./lib
 ## TODO
 
 [x] -- example with raylib
+
+
 [ ] -- try getting output dynamically onto window (from printf for example)
+
+
 [ ] -- understand all the other patterns in zeroMQ
+
+
