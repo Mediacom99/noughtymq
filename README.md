@@ -23,12 +23,6 @@ export LD_LIBRARY_PATH = ./lib
 
 ## TODO
 
-[x] -- example with raylib
-
-
-[ ] -- try getting output dynamically onto window (from printf for example)
-
-
+[x] -- example with raylib\
+[ ] -- try getting output dynamically onto window (from printf for example)\
 [ ] -- understand all the other patterns in zeroMQ
-
-
